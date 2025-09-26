@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tax Invoice</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      color: #000;
+    }
+    .invoice-container {
+      border: 1px solid #000;
+      padding: 15px;
+      width: 750px;
+      margin: auto;
+    }
+    .header {
+      text-align: center;
+      font-weight: bold;
+    }
+    .header h2 {
+      margin: 5px 0;
+      font-size: 20px;
+    }
+    .header h3 {
+      margin: 5px 0;
+      font-size: 18px;
+      text-decoration: underline;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+    .col {
+      width: 32%;
+      font-size: 14px;
+    }
+    .col strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .section {
+      margin-top: 15px;
+      border-top: 1px solid #000;
+      padding-top: 10px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    table, th, td {
+      border: 1px solid #000;
+    }
+    th, td {
+      padding: 6px;
+      text-align: center;
+    }
+    .right {
+      text-align: right;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+    .signature {
+      border: 1px solid #000;
+      width: 200px;
+      height: 70px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-container">
+    
+    <!-- Header -->
+    <div class="header">
+      <h2>Shalin Kotia</h2>
+      <h3>TAX INVOICE</h3>
+    </div>
+
+    <!-- Address / Invoice Details -->
+    <div class="row">
+      <div class="col">
+        <strong>SHIPPING ADDRESS:</strong>
+        Shashikant Sharma <br>
+        SKYWAY-2 Vidhyadhar Nagar Sector 2 <br>
+        Vidhyadhar Nagar Police Station <br>
+        Jaipur 302039, Rajasthan <br>
+        India <br>
+        State Code : 08
+      </div>
+
+      <div class="col">
+        <strong>SOLD BY:</strong>
+        Shalin Kotia <br>
+        Shop No 5, Ground Floor, Suraj Nagar <br>
+        Near Chatar Matar Park, Azadpur <br>
+        North West Delhi 110033 <br>
+        Delhi, India <br>
+        State Code : 07 <br>
+        Ph: 8287552912 <br>
+        Email: shalinkotia@gmail.com
+      </div>
+
+      <div class="col">
+        <strong>INVOICE DETAILS:</strong>
+        INVOICE NO.: Retail00144 <br>
+        INVOICE DATE: 23/05/2025 <br>
+        ORDER NO.: SP1418 <br>
+        ORDER DATE: 22/05/2025 <br>
+        CHANNEL: SP Stores <br>
+        SHIPPED BY: DTDC Surface 2kg <br>
+        AWB NO.: I43160151 <br>
+        PAYMENT METHOD: cod
+      </div>
+    </div>
+
+    <!-- Items Table -->
+    <div class="section">
+      <table>
+        <thead>
+          <tr>
+            <th>S.NO.</th>
+            <th>PRODUCT NAME</th>
+            <th>HSN</th>
+            <th>QTY</th>
+            <th>UNIT PRICE</th>
+            <th>UNIT DISCOUNT</th>
+            <th>TAXABLE VALUE</th>
+            <th>IGST</th>
+            <th>TOTAL (Including GST)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>
+              <strong>Portable Mini Cooler Humidifier</strong><br>
+              SKU : 51476295385363
+            </td>
+            <td>-</td>
+            <td>2</td>
+            <td>Rs. 699.00</td>
+            <td>0.00</td>
+            <td>1398.00</td>
+            <td>0 | 0</td>
+            <td>1398.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Net Total -->
+    <div class="section right">
+      <strong>NET TOTAL (In Value) &nbsp;&nbsp; Rs. 1398.00</strong>
+    </div>
+
+    <!-- Signature -->
+    <div class="section">
+      <div class="signature"></div>
+      Authorized Signature for Shalin Kotia
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      Whether tax is payable under reverse charge - No
+    </div>
+  </div>
+</body>
+</html>
