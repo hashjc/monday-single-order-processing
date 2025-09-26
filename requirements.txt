@@ -1,0 +1,6 @@
+flask
+requests
+WeasyPrint
+PyPDF2
+reportlab
+weasyprint
