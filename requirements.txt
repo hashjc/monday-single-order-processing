@@ -4,3 +4,4 @@ WeasyPrint
 PyPDF2
 reportlab
 weasyprint
+pytz
