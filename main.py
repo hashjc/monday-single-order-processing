@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 import os
-from orders import get_order_with_lineitems
+from backend.orders import get_order_with_lineitems
 from flask_cors import CORS
 from orders import generate_manifest
 from orders import generate_label
