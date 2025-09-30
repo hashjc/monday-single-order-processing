@@ -98,7 +98,7 @@ export default function OrderDetail() {
       setCustomerData(getResponse.data.customer);
     } catch (err) {
       console.error("Error fetching data:", err);
-      setError("Failed to load order.");
+      // setError("Failed to load order.");
     } finally {
       setLoading(false);
     }
