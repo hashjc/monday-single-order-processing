@@ -14,9 +14,10 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route("/order", methods=["GET"])
 def order_details():
+    print('hello world',flush=True)
     order_id = 2023614909
     data = get_order_with_lineitems(order_id)
-    print('data--->',data)
+    print('data--->',data,flush=True)
     return jsonify(data)
 
 @app.route("/get-couriers", methods=["POST"])
