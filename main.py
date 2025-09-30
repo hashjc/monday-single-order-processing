@@ -10,6 +10,10 @@ MONDAY_API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjUyMjU5NjU2OSwiYWFpIjoxMSwidWlkI
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    print("home page - 1",flush=True)
+    return render_template('index.html')  # Add route/html whatever
 
 
 @app.route("/order", methods=["GET"])
