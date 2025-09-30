@@ -75,7 +75,7 @@ type GroupedManifests = {
 export default function OrderDetail() {
   const [order, setOrder] = useState<Order | null>(null);
   const [lineItems, setLineItems] = useState<LineItem[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const [customer_info, setCustomerData] = useState<CustomerData | null>(null);
   const [loading, setLoading] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
