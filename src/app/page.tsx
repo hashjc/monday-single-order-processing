@@ -75,7 +75,7 @@ type GroupedManifests = {
 export default function OrderDetail() {
   const [order, setOrder] = useState<Order | null>(null);
   const [lineItems, setLineItems] = useState<LineItem[]>([]);
-  // const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [customer_info, setCustomerData] = useState<CustomerData | null>(null);
   const [loading, setLoading] = useState(false);
   const [buttonLoading, setButtonLoading] = useState(false);
@@ -98,7 +98,7 @@ export default function OrderDetail() {
       setCustomerData(getResponse.data.customer);
     } catch (err) {
       console.error("Error fetching data:", err);
-      // setError("Failed to load order.");
+      setError("Failed to load order.");
     } finally {
       setLoading(false);
     }
