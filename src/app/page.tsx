@@ -92,7 +92,10 @@ export default function OrderDetail() {
   const fetchOrderWithLineItems = async () => {
     try {
       setLoading(true);
-      const getResponse = await axios.get<ApiResponse>("http://127.0.0.1:8000/order");
+      // const getResponse = await axios.get<ApiResponse>("http://127.0.0.1:8000/order");
+      const getResponse = await axios.get<ApiResponse>("/order");
+
+
       setOrder(getResponse.data.order);
       setLineItems(getResponse.data.lineitems);
       setCustomerData(getResponse.data.customer);
@@ -122,7 +125,10 @@ export default function OrderDetail() {
     };
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/get-couriers", {
+      // const res = await fetch("http://127.0.0.1:8000/get-couriers", {
+      const res = await fetch("/get-couriers", {
+
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -204,7 +210,9 @@ const handleGenerateManifestAndLabel = async () => {
         console.log('manifestPayload---->',manifestPayload);
         
         // Generate manifest PDF
-        await axios.post("http://127.0.0.1:8000/generate-manifest", manifestPayload, {
+        // await axios.post("http://127.0.0.1:8000/generate-manifest", manifestPayload, {
+        await axios.post("/generate-manifest", manifestPayload, {
+
           responseType: "blob",
         });
         
@@ -221,7 +229,8 @@ const handleGenerateManifestAndLabel = async () => {
         };
         console.log('labelPayload---->',labelPayload);
         
-        await axios.post("http://127.0.0.1:8000/generate-label", labelPayload, {
+        // await axios.post("http://127.0.0.1:8000/generate-label", labelPayload, {
+        await axios.post("/generate-label", labelPayload, {
           responseType: "blob",
         });
     }

@@ -1,15 +1,50 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, send_from_directory
 import os
 from backend.orders import get_order_with_lineitems
 from flask_cors import CORS
 from backend.orders import generate_manifest
 from backend.orders import generate_label
 from backend.orders import check_courier_serviceability
-MONDAY_API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjUyMjU5NjU2OSwiYWFpIjoxMSwidWlkIjo3Njc0NjQ1OSwiaWFkIjoiMjAyNS0wNi0wNVQxNTowNzowNC40MDFaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6Mjk2NTAyMjEsInJnbiI6ImFwc2UyIn0.TY4oQYraqw6fuq6I10A5Ga5JMn3LGoZv8qIQawbQlDY"
 
-app = Flask(__name__)
+import socket
+import requests.adapters
+from urllib3.util.connection import create_connection
+
+# Bypass DNS issues
+def patched_create_connection(address, *args, **kwargs):
+    host, port = address
+    if host == 'api.monday.com':
+        host = '104.18.24.105'  # Monday.com IP
+    elif host == 'apiv2.shiprocket.in':
+        host = '104.21.22.166'  # Shiprocket IP
+    return create_connection((host, port), *args, **kwargs)
+
+# Apply the patch
+import urllib3.util.connection
+urllib3.util.connection.create_connection = patched_create_connection
+
+# Add these to your main.py
+app = Flask(__name__, static_folder='out', static_url_path='')
 CORS(app, resources={r"/*": {"origins": "*"}})
 
+
+@app.route('/')
+def serve_react_app():
+    return send_from_directory('out', 'index.html')
+
+@app.route('/<path:path>')
+def serve_static_files(path):
+    return send_from_directory('out', path)
+
+
+MONDAY_API_KEY = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjUyMjU5NjU2OSwiYWFpIjoxMSwidWlkIjo3Njc0NjQ1OSwiaWFkIjoiMjAyNS0wNi0wNVQxNTowNzowNC40MDFaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6Mjk2NTAyMjEsInJnbiI6ImFwc2UyIn0.TY4oQYraqw6fuq6I10A5Ga5JMn3LGoZv8qIQawbQlDY"
+
+# app = Flask(__name__)
+# CORS(app, resources={r"/*": {"origins": "*"}})
+
+@app.route("/test", methods=["GET"])
+def test():
+    return jsonify({"message": "Server is working!", "status": "success"})
 
 @app.route("/order", methods=["GET"])
 def order_details():
