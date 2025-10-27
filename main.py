@@ -36,12 +36,19 @@ CORS(app, resources={
 
 
 
+# @app.after_request
+# def after_request(response):
+#     # Allow iframe embedding from Monday.com
+#     response.headers['X-Frame-Options'] = 'ALLOWALL'
+#     response.headers['Content-Security-Policy'] = "frame-ancestors *"
+#     return response
+
 @app.after_request
 def after_request(response):
-    # Allow iframe embedding from Monday.com
-    response.headers['X-Frame-Options'] = 'ALLOWALL'
-    response.headers['Content-Security-Policy'] = "frame-ancestors *"
+    response.headers.pop('X-Frame-Options', None)
+    response.headers['Content-Security-Policy'] = "frame-ancestors https://*.monday.com https://monday.com"
     return response
+
 
 
 @app.route('/')
