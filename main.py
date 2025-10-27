@@ -25,7 +25,23 @@ urllib3.util.connection.create_connection = patched_create_connection
 
 # Add these to your main.py
 app = Flask(__name__, static_folder='out', static_url_path='')
-CORS(app, resources={r"/*": {"origins": "*"}})
+# CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app, resources={
+    r"/*": {
+        "origins": "*",
+        "allow_headers": "*",
+        "methods": ["GET", "POST", "OPTIONS"]
+    }
+})
+
+
+
+@app.after_request
+def after_request(response):
+    # Allow iframe embedding from Monday.com
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
+    response.headers['Content-Security-Policy'] = "frame-ancestors *"
+    return response
 
 
 @app.route('/')
